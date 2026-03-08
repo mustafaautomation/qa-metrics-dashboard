@@ -1,8 +1,9 @@
 # QA Metrics Dashboard
 
-![CI](https://github.com/mustafaautomation/qa-metrics-dashboard/actions/workflows/dashboard.yml/badge.svg)
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)
+[![CI](https://github.com/mustafaautomation/qa-metrics-dashboard/actions/workflows/dashboard.yml/badge.svg)](https://github.com/mustafaautomation/qa-metrics-dashboard/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933.svg?logo=node.js&logoColor=white)](https://nodejs.org)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg?logo=docker&logoColor=white)](Dockerfile)
 
 A real-time QA metrics dashboard that ingests JUnit XML test results and renders actionable intelligence — pass rate trends, suite-level breakdowns, browser coverage, failure rankings, and per-run history — all in a single dark-themed interface that auto-refreshes every 30 seconds.
 
