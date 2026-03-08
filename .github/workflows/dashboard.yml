@@ -1,0 +1,28 @@
+name: Deploy Dashboard
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  verify:
+    name: Verify & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify server starts
+        run: |
+          node src/server.js &
+          sleep 2
+          curl -f http://localhost:3000/api/metrics | head -c 200
+          echo "✅ API responding correctly"

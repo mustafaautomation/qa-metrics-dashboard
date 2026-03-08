@@ -1,0 +1,23 @@
+{
+  "name": "qa-metrics-dashboard",
+  "version": "1.0.0",
+  "description": "Real-time QA metrics dashboard — test results, trends, and coverage at a glance",
+  "main": "src/server.js",
+  "author": "Quvantic <info@quvantic.com> (https://quvantic.com)",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/mustafaautomation/qa-metrics-dashboard.git" },
+  "homepage": "https://github.com/mustafaautomation/qa-metrics-dashboard#readme",
+  "bugs": { "url": "https://github.com/mustafaautomation/qa-metrics-dashboard/issues" },
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.0",
+    "fast-xml-parser": "^4.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
+}
