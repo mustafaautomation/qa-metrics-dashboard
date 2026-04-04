@@ -1,6 +1,6 @@
 {
   "name": "qa-metrics-dashboard",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Real-time QA metrics dashboard — test results, trends, and coverage at a glance",
   "main": "src/server.js",
   "author": "Quvantic <info@quvantic.com> (https://quvantic.com)",
