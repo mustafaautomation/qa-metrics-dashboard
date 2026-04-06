@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<testsuites>
+  <testsuite name="Auth" tests="4" failures="1" errors="0" skipped="0" time="2.5">
+    <testcase name="login" classname="auth" time="0.5"/>
+    <testcase name="logout" classname="auth" time="0.3"/>
+    <testcase name="register" classname="auth" time="0.8"/>
+    <testcase name="reset-password" classname="auth" time="0.9"><failure message="Timeout"/></testcase>
+  </testsuite>
+  <testsuite name="Cart" tests="3" failures="0" errors="0" skipped="1" time="1.2">
+    <testcase name="add-item" classname="cart" time="0.4"/>
+    <testcase name="remove-item" classname="cart" time="0.3"/>
+    <testcase name="checkout" classname="cart" time="0"><skipped/></testcase>
+  </testsuite>
+</testsuites>
