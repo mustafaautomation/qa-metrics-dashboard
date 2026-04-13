@@ -28,7 +28,12 @@ function getMetrics() {
 }
 
 app.get('/api/metrics', (_req, res) => {
-  res.json(getMetrics());
+  try {
+    res.json(getMetrics());
+  } catch (err) {
+    console.error('[ERROR] /api/metrics failed:', err.message);
+    res.status(500).json({ error: 'Failed to load metrics' });
+  }
 });
 
 app.listen(PORT, () => {
