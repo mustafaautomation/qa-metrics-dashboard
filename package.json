@@ -9,7 +9,7 @@
     "type": "git",
     "url": "https://github.com/mustafaautomation/qa-metrics-dashboard.git"
   },
-  "homepage": "https://github.com/mustafaautomation/qa-metrics-dashboard#readme",
+  "homepage": "https://quvantic.com",
   "bugs": {
     "url": "https://github.com/mustafaautomation/qa-metrics-dashboard/issues"
   },
@@ -27,6 +27,6 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.0",
-    "vitest": "^4.1.2"
+    "vitest": "^3.0.0"
   }
 }

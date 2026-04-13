@@ -19,6 +19,12 @@ let charts = {};
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 function el(id) { return document.getElementById(id); }
 
+function esc(str) {
+  const d = document.createElement('div');
+  d.textContent = String(str ?? '');
+  return d.innerHTML;
+}
+
 function passRateColor(rate) {
   if (rate >= 95) return GREEN;
   if (rate >= 90) return AMBER;
@@ -38,7 +44,8 @@ function statusBadge(status) {
 // ─── Summary cards ───────────────────────────────────────────────────────────
 function renderSummary(s) {
   const lastRunDate = new Date(s.lastRun);
-  el('lastRun').textContent = `Last run: ${lastRunDate.toLocaleString()}`;
+  const lastRunStr = isNaN(lastRunDate.getTime()) ? 'Unknown' : lastRunDate.toLocaleString();
+  el('lastRun').textContent = `Last run: ${lastRunStr}`;
 
   const dot = el('statusDot');
   dot.className = `w-2 h-2 rounded-full animate-pulse ${s.passRate >= 95 ? 'bg-emerald-500' : s.passRate >= 90 ? 'bg-amber-500' : 'bg-red-500'}`;
@@ -52,7 +59,7 @@ function renderSummary(s) {
 
   el('passedCount').textContent = `${s.passed} of ${s.total} tests`;
   el('failedCount').textContent = s.failed.toLocaleString();
-  el('failRate').textContent    = `${((s.failed / s.total) * 100).toFixed(1)}% failure rate`;
+  el('failRate').textContent    = `${s.total > 0 ? ((s.failed / s.total) * 100).toFixed(1) : '0.0'}% failure rate`;
   el('avgDuration').textContent = `${s.avgDuration}m`;
 }
 
@@ -153,8 +160,8 @@ function renderTopFailures(failures) {
   container.innerHTML = failures.map(f => `
     <div class="flex items-center gap-3">
       <div class="flex-1 min-w-0">
-        <p class="text-sm text-slate-200 truncate">${f.test}</p>
-        <p class="text-xs text-slate-500">${f.suite} · last failed ${f.lastFailed}</p>
+        <p class="text-sm text-slate-200 truncate">${esc(f.test)}</p>
+        <p class="text-xs text-slate-500">${esc(f.suite)} · last failed ${esc(f.lastFailed)}</p>
         <div class="mt-1.5 h-1 rounded-full bg-slate-700 overflow-hidden">
           <div class="h-full rounded-full bg-red-500/70" style="width:${(f.failures/max)*100}%"></div>
         </div>
@@ -168,8 +175,8 @@ function renderTopFailures(failures) {
 function renderRecentRuns(runs) {
   el('runsTable').innerHTML = runs.map(r => `
     <tr class="hover:bg-slate-700/20 transition-colors">
-      <td class="py-3 pr-4 font-mono text-sm text-blue-400">${r.run}</td>
-      <td class="py-3 pr-4 text-slate-400 text-sm">${r.date}</td>
+      <td class="py-3 pr-4 font-mono text-sm text-blue-400">${esc(r.run)}</td>
+      <td class="py-3 pr-4 text-slate-400 text-sm">${esc(r.date)}</td>
       <td class="py-3 pr-4 text-right text-slate-300 text-sm">${r.total}</td>
       <td class="py-3 pr-4 text-right text-emerald-400 text-sm">${r.passed}</td>
       <td class="py-3 pr-4 text-right text-red-400 text-sm">${r.failed}</td>
@@ -194,6 +201,8 @@ async function loadDashboard() {
     if (data.recentRuns?.length) renderRecentRuns(data.recentRuns);
   } catch (err) {
     console.error('Failed to load metrics:', err);
+    const banner = el('lastRun');
+    if (banner) banner.textContent = 'Failed to load metrics — is the server running?';
   }
 }
 

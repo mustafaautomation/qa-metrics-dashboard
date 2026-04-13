@@ -23,13 +23,13 @@ function parseJUnitResults(reportsDir, files) {
 
     for (const suite of suites) {
       const name     = suite['@_name'] || 'Unknown';
-      const tests    = parseInt(suite['@_tests']    || 0, 10);
-      const failures = parseInt(suite['@_failures'] || 0, 10);
-      const errors   = parseInt(suite['@_errors']   || 0, 10);
-      const skipped  = parseInt(suite['@_skipped']  || 0, 10);
-      const duration = parseFloat(suite['@_time']   || 0);
+      const tests    = parseInt(suite['@_tests']    || 0, 10) || 0;
+      const failures = parseInt(suite['@_failures'] || 0, 10) || 0;
+      const errors   = parseInt(suite['@_errors']   || 0, 10) || 0;
+      const skipped  = parseInt(suite['@_skipped']  || 0, 10) || 0;
+      const duration = parseFloat(suite['@_time']   || 0) || 0;
       const failed   = failures + errors;
-      const passed   = tests - failed - skipped;
+      const passed   = Math.max(0, tests - failed - skipped);
 
       totalTests    += tests;
       totalFailed   += failed;
@@ -45,7 +45,8 @@ function parseJUnitResults(reportsDir, files) {
   }
 
   const passRate    = totalTests > 0 ? Math.round((totalPassed / totalTests) * 1000) / 10 : 0;
-  const avgDuration = Math.round((totalDuration / 60) * 10) / 10;
+  const suiteCount  = Object.keys(suiteMap).length || 1;
+  const avgDuration = Math.round((totalDuration / suiteCount / 60) * 10) / 10;
 
   return {
     summary: {
