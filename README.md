@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/mustafaautomation/qa-metrics-dashboard/actions/workflows/dashboard.yml/badge.svg)](https://github.com/mustafaautomation/qa-metrics-dashboard/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-339933.svg?logo=node.js&logoColor=white)](https://nodejs.org)
+[![Node.js](https://img.shields.io/badge/Node.js-22+-339933.svg?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg?logo=docker&logoColor=white)](Dockerfile)
 
 A real-time QA metrics dashboard that ingests JUnit XML test results and renders actionable intelligence — pass rate trends, suite-level breakdowns, browser coverage, failure rankings, and per-run history — all in a single dark-themed interface that auto-refreshes every 30 seconds.
@@ -28,7 +28,7 @@ Most QA teams run hundreds of automated tests in CI but have no centralized view
 
 | Component | Purpose |
 |---|---|
-| **Node.js + Express** | Lightweight HTTP server and REST API |
+| **Node.js 24 + Express 5** | Lightweight HTTP server and REST API |
 | **Chart.js 4** | All interactive charts (line, bar, stacked bar) |
 | **Tailwind CSS** | Utility-first styling via CDN |
 | **fast-xml-parser** | JUnit XML ingestion and parsing |
